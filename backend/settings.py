@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = [".pythonanywhere.com", "127.0.0.1:8000", "localhost:8000"]
+ALLOWED_HOSTS = [".pythonanywhere.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "accounts",
     "blogs",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -159,6 +160,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
@@ -169,3 +171,10 @@ REST_AUTH = {
 }
 
 SITE_ID = 1
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Saeed API Testing",
+    "DESCRIPTION": "API Project",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
